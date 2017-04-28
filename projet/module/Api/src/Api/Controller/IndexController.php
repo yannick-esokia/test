@@ -7,10 +7,14 @@ use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
-
+    protected $albumTable;
+    
     public function indexAction()
     {
-        return new ViewModel();
+        $albums = $this->getAlbumTable()->fetchAll();
+        return new ViewModel(
+            array('albums' => $albums)
+        );
     }
 
     public function printAction()
@@ -18,6 +22,17 @@ class IndexController extends AbstractActionController
         return new ViewModel();
     }
 
+    /*
+     * Include
+     */
+    public function getAlbumTable()
+    {
+        if (!$this->albumTable) {
+            $sm = $this->getServiceLocator();
+            $this->albumTable = $sm->get('Api\Model\AlbumTable');
+        }
+        return $this->albumTable;
+    }
 
 }
 
