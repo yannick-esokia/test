@@ -1,14 +1,23 @@
 <?php
 
-namespace Application\Controller;
+namespace Api\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class TestController extends AbstractActionController
+class IndexController extends AbstractActionController
 {
+
     public function indexAction()
     {
         return new ViewModel();
     }
+
+    public function printAction()
+    {
+        return new ViewModel();
+    }
+
+
 }
+
